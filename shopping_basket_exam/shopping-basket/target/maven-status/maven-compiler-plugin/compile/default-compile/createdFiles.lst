@@ -1,0 +1,4 @@
+com\shopping\basket\repository\ShoppingBasketRepository.class
+com\shopping\basket\controller\ShoppingBasketController.class
+com\shopping\basket\ShoppingBasketApplication.class
+com\shopping\basket\entity\Basket.class

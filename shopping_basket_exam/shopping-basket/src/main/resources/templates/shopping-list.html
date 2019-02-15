@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Shopping-Basket</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+     
+    </head>
+    <body>
+        <div th:switch="${baskets}" class="container my-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 th:case="null">No Shopping List</h2>
+                    <div th:case="*">
+                        <h2 class="my-5">Shopping List</h2>
+                        <table class="table table-striped table-responsive-md">
+                            <thead>
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="basket: ${baskets}">
+                                    <td th:text="${basket.itemname}"></td>
+                                    <td th:text="${basket.quantity}"></td>
+                                    <td th:text="${basket.price}"></td>
+                                    <td><a th:href="@{/edit/{id}(id=${basket.basketid})}" class="btn btn-primary"><i>edit</i></a></td>
+                                    <td><a th:href="@{/delete/{id}(id=${basket.basketid})}" class="btn btn-primary"><i></i>remove</a></td>                               
+                                </tr>      
+                                
+                                <tr>
+                                	<td colspan="3"><b>Total Amount</b></td>
+                                	<td th:text="${totalAmount}"/>
+                                </tr>                         
+                               
+                                 
+                            </tbody>
+                        </table>
+                    </div>      
+                    <p class="my-5"><a href="/addShopping" class="btn btn-primary"><i> Add Shopping</i></a></p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
